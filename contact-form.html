@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Arthur Barker</title>
+  <style>
+    @font-face {
+      font-family: 'Massilia';
+      src: url('fonts/fonnts.com-Massilia_Regular.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Massilia';
+      src: url('fonts/fonnts.com-Massilia_Bold.woff2') format('woff2');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Massilia', system-ui, -apple-system, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      color: #1e1e1e;
+      background: #fff;
+    }
+
+    .contact-form-wrap {
+      padding: 16px 0;
+      max-width: 100%;
+    }
+
+    .contact-form-wrap label {
+      display: block;
+      margin-bottom: 0.25em;
+      font-size: 14px;
+      font-weight: 700;
+      color: #1e1e1e;
+    }
+
+    .contact-form-wrap .label-required {
+      font-weight: 400;
+    }
+
+    .contact-form-wrap .field {
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-form-wrap input,
+    .contact-form-wrap textarea {
+      width: 100%;
+      margin: 0;
+      padding: 0.8rem 1rem;
+      border: 1px solid #1e1e1e;
+      border-radius: 6px;
+      font: inherit;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #1e1e1e;
+      background: #fff;
+      box-shadow: none;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    .contact-form-wrap input {
+      min-height: 42px;
+    }
+
+    .contact-form-wrap textarea {
+      min-height: 320px;
+      resize: vertical;
+      display: block;
+    }
+
+    .contact-form-wrap input:focus,
+    .contact-form-wrap textarea:focus {
+      outline: 1px solid #1e1e1e;
+      outline-offset: 0;
+    }
+
+    .contact-form-wrap .submit-row {
+      margin-top: 0.5rem;
+    }
+
+    .contact-form-wrap button[type="submit"] {
+      display: inline-block;
+      min-height: 42px;
+      padding: 0.8rem 1.6rem;
+      border: none;
+      border-radius: 50px;
+      background: #1e1e1e;
+      color: #fff;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.3;
+      cursor: pointer;
+    }
+
+    .contact-form-wrap button[type="submit"]:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    [data-fs-success] {
+      display: none;
+      padding: 16px;
+      margin-bottom: 16px;
+      background: #f0fdf4;
+      border: 1px solid #86efac;
+      border-radius: 8px;
+      color: #166534;
+      font-size: 14px;
+    }
+
+    [data-fs-success].is-visible { display: block; }
+
+    [data-fs-error] {
+      display: none;
+      padding: 16px;
+      margin-bottom: 16px;
+      background: #fef2f2;
+      border: 1px solid #fca5a5;
+      border-radius: 8px;
+      color: #991b1b;
+      font-size: 14px;
+    }
+
+    [data-fs-error].is-visible { display: block; }
+
+    .field [data-fs-error] {
+      display: block;
+      padding: 0;
+      margin: 0.35rem 0 0;
+      background: none;
+      border: none;
+      color: #b91c1c;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <div class="contact-form-wrap">
+    <div data-fs-success role="status">
+      Thank you for your message. We'll be in touch shortly.
+    </div>
+    <div data-fs-error role="alert"></div>
+
+    <form id="arthur-contact-form" aria-label="Contact form">
+      <div class="field">
+        <label for="name">
+          Name<span class="label-required" aria-hidden="true"> (required)</span>
+        </label>
+        <input type="text" id="name" name="name" required data-fs-field autocomplete="name" />
+        <span data-fs-error="name"></span>
+      </div>
+
+      <div class="field">
+        <label for="email">
+          Email<span class="label-required" aria-hidden="true"> (required)</span>
+        </label>
+        <input type="email" id="email" name="email" required data-fs-field autocomplete="email" />
+        <span data-fs-error="email"></span>
+      </div>
+
+      <div class="field">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="12" data-fs-field></textarea>
+        <span data-fs-error="message"></span>
+      </div>
+
+      <input type="hidden" name="_subject" value="New enquiry from arthur-barker.com" />
+
+      <div class="submit-row">
+        <button type="submit" data-fs-submit-btn>Contact Us</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    window.formspree = window.formspree || function () {
+      (formspree.q = formspree.q || []).push(arguments);
+    };
+    formspree('initForm', { formElement: '#arthur-contact-form', formId: 'xbdvbdyb' });
+  </script>
+  <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var success = document.querySelector('.contact-form-wrap > [data-fs-success]');
+      var error = document.querySelector('.contact-form-wrap > [data-fs-error]');
+      var form = document.getElementById('arthur-contact-form');
+      if (!form) return;
+
+      var observer = new MutationObserver(function () {
+        if (success && success.textContent.trim()) success.classList.add('is-visible');
+        if (error && error.textContent.trim()) error.classList.add('is-visible');
+      });
+      if (success) observer.observe(success, { childList: true, subtree: true, characterData: true });
+      if (error) observer.observe(error, { childList: true, subtree: true, characterData: true });
+    });
+  </script>
+</body>
+</html>
