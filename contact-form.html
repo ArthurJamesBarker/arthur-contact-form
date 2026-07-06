@@ -22,8 +22,13 @@
 
     * { box-sizing: border-box; }
 
+    html,
     body {
       margin: 0;
+      padding: 0;
+    }
+
+    body {
       font-family: 'Massilia', system-ui, -apple-system, sans-serif;
       font-size: 16px;
       line-height: 1.5;
@@ -31,8 +36,13 @@
       background: #fff;
     }
 
+    html.is-embed,
+    html.is-embed body {
+      overflow: hidden;
+    }
+
     .contact-form-wrap {
-      padding: 16px 0;
+      padding: 0;
       max-width: 100%;
     }
 
@@ -74,9 +84,15 @@
     }
 
     .contact-form-wrap textarea {
-      min-height: 320px;
-      resize: vertical;
+      min-height: 200px;
+      height: 200px;
+      resize: none;
       display: block;
+    }
+
+    html.is-embed .contact-form-wrap textarea {
+      min-height: 180px;
+      height: 180px;
     }
 
     .contact-form-wrap input:focus,
@@ -172,7 +188,7 @@
 
       <div class="field">
         <label for="message">Message</label>
-        <textarea id="message" name="message" rows="12" data-fs-field></textarea>
+        <textarea id="message" name="message" rows="8" data-fs-field></textarea>
         <span data-fs-error="message"></span>
       </div>
 
@@ -185,6 +201,10 @@
   </div>
 
   <script>
+    if (window.self !== window.top) {
+      document.documentElement.classList.add('is-embed');
+    }
+
     window.formspree = window.formspree || function () {
       (formspree.q = formspree.q || []).push(arguments);
     };
