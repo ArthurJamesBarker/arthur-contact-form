@@ -38,12 +38,51 @@
 
     html.is-embed,
     html.is-embed body {
+      height: 100%;
       overflow: hidden;
     }
 
     .contact-form-wrap {
       padding: 0;
       max-width: 100%;
+    }
+
+    html.is-embed .contact-form-wrap {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    html.is-embed #arthur-contact-form {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-height: 0;
+    }
+
+    html.is-embed .field--message {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      margin-bottom: 1rem;
+    }
+
+    html.is-embed .field--message textarea {
+      flex: 1;
+      min-height: 120px;
+      height: auto;
+      resize: none;
+    }
+
+    html.is-embed .contact-form-wrap .field:not(.field--message) {
+      flex-shrink: 0;
+      margin-bottom: 1rem;
+    }
+
+    html.is-embed .contact-form-wrap .submit-row {
+      flex-shrink: 0;
+      margin-top: 0;
     }
 
     .contact-form-wrap label {
@@ -84,15 +123,10 @@
     }
 
     .contact-form-wrap textarea {
-      min-height: 200px;
-      height: 200px;
-      resize: none;
+      min-height: 240px;
+      height: 240px;
+      resize: vertical;
       display: block;
-    }
-
-    html.is-embed .contact-form-wrap textarea {
-      min-height: 180px;
-      height: 180px;
     }
 
     .contact-form-wrap input:focus,
@@ -186,7 +220,7 @@
         <span data-fs-error="email"></span>
       </div>
 
-      <div class="field">
+      <div class="field field--message">
         <label for="message">Message</label>
         <textarea id="message" name="message" rows="8" data-fs-field></textarea>
         <span data-fs-error="message"></span>
